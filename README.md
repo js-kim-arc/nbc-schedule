@@ -160,5 +160,5 @@ GET /api/schedules?author=김철수 → 작성자 필터 조회
 </details>
 
 
-1.png
+[1.png](https://github.com/js-kim-arc/nbc-schedule/blob/main/1.png)
 Erd 참고용 사진입니다.!!
