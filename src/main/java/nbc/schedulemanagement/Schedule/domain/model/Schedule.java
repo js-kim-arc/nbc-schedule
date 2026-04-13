@@ -1,4 +1,4 @@
-package com.example.schedule.domain;
+package nbc.schedulemanagement.Schedule.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.example.schedule.exception.InvalidPasswordException;
 
 import java.time.LocalDateTime;
 
@@ -60,7 +59,6 @@ public class Schedule {
         validatePassword(password);
         if (title  != null && !title.isBlank())  this.title  = title;
         if (author != null && !author.isBlank()) this.author = author;
-        // updatedAt 은 @LastModifiedDate 가 자동 갱신
     }
 
     public void validatePassword(String password) {

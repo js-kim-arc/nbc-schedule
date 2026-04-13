@@ -27,16 +27,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(code.getStatus()).body(body);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException e) {
-        String message = e.getBindingResult()
-                          .getAllErrors()
-                          .get(0)
-                          .getDefaultMessage();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                             .body(Map.of("message", message));
-    }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleUnexpected(Exception e) {
         log.error("[GlobalExceptionHandler] 예상치 못한 예외 발생", e);
