@@ -50,11 +50,25 @@ public class ScheduleService {
         return ScheduleResponse.from(getScheduleOrThrow(id));
     }
 
+    // ── 수정 ──────────────────────────────────────────────
+    @Transactional
+    public ScheduleResponse update(Long id, ScheduleRequest.Update request) {
+        validateUpdate(request);
+
+        Schedule schedule = getScheduleOrThrow(id);
+        schedule.update(request.title(), request.author(), request.password());
+        return ScheduleResponse.from(schedule);
+    }
+
     // ── 수동 검증 ─────────────────────────────────────────
     private void validateCreate(ScheduleRequest.Create request) {
         if (isBlank(request.title()))    throw ScheduleException.of(ErrorCode.INVALID_INPUT, "제목은 필수입니다.");
         if (isBlank(request.content()))  throw ScheduleException.of(ErrorCode.INVALID_INPUT, "내용은 필수입니다.");
         if (isBlank(request.author()))   throw ScheduleException.of(ErrorCode.INVALID_INPUT, "작성자는 필수입니다.");
+        if (isBlank(request.password())) throw ScheduleException.of(ErrorCode.INVALID_INPUT, "비밀번호는 필수입니다.");
+    }
+
+    private void validateUpdate(ScheduleRequest.Update request) {
         if (isBlank(request.password())) throw ScheduleException.of(ErrorCode.INVALID_INPUT, "비밀번호는 필수입니다.");
     }
 

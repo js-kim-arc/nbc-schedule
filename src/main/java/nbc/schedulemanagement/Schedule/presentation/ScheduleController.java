@@ -40,4 +40,12 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.findById(id));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<ScheduleResponse> update(
+            @PathVariable Long id,
+            @RequestBody ScheduleRequest.Update request
+                                                  ) {
+        return ResponseEntity.ok(scheduleService.update(id, request));
+    }
+
 }
