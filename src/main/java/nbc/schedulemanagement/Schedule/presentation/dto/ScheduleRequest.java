@@ -15,4 +15,9 @@ public class ScheduleRequest {
             String password
     ) {}
 
+    // ─── 3. 일정 삭제 ─────────────────────────────────────
+    public record Delete(
+            String password
+    ) {}
+
 }

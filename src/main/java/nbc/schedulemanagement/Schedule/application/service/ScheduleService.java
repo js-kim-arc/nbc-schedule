@@ -60,6 +60,16 @@ public class ScheduleService {
         return ScheduleResponse.from(schedule);
     }
 
+    // ── 삭제 ──────────────────────────────────────────────
+    @Transactional
+    public void delete(Long id, ScheduleRequest.Delete request) {
+        validateDelete(request);
+
+        Schedule schedule = getScheduleOrThrow(id);
+        schedule.validatePassword(request.password());
+        scheduleRepository.delete(schedule);
+    }
+
     // ── 수동 검증 ─────────────────────────────────────────
     private void validateCreate(ScheduleRequest.Create request) {
         if (isBlank(request.title()))    throw ScheduleException.of(ErrorCode.INVALID_INPUT, "제목은 필수입니다.");
@@ -69,6 +79,10 @@ public class ScheduleService {
     }
 
     private void validateUpdate(ScheduleRequest.Update request) {
+        if (isBlank(request.password())) throw ScheduleException.of(ErrorCode.INVALID_INPUT, "비밀번호는 필수입니다.");
+    }
+
+    private void validateDelete(ScheduleRequest.Delete request) {
         if (isBlank(request.password())) throw ScheduleException.of(ErrorCode.INVALID_INPUT, "비밀번호는 필수입니다.");
     }
 

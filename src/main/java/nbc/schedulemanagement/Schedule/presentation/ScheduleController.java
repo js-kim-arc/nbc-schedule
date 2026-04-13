@@ -48,4 +48,13 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.update(id, request));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> delete(
+            @PathVariable Long id,
+            @RequestBody ScheduleRequest.Delete request
+                                                     ) {
+        scheduleService.delete(id, request);
+        return ResponseEntity.ok(Map.of("message", "일정이 삭제되었습니다."));
+    }
+
 }
