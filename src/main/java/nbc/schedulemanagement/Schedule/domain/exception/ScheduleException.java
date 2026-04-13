@@ -9,24 +9,15 @@ public class ScheduleException extends BusinessException {
         super(errorCode);
     }
 
-    // ─── 일정 없음 (404) ───────────────────────────────────
-    public static class NotFound extends ScheduleException {
-        public NotFound() {
-            super(ErrorCode.SCHEDULE_NOT_FOUND);
-        }
+    private ScheduleException(ErrorCode errorCode, String detail) {
+        super(errorCode, detail);
     }
 
-    // ─── 비밀번호 불일치 (403) ─────────────────────────────
-    public static class InvalidPassword extends ScheduleException {
-        public InvalidPassword() {
-            super(ErrorCode.INVALID_PASSWORD);
-        }
+    public static ScheduleException of(ErrorCode errorCode) {
+        return new ScheduleException(errorCode);
     }
 
-    // ─── 입력값 오류 (400) ─────────────────────────────────
-    public static class InvalidInput extends ScheduleException {
-        public InvalidInput() {
-            super(ErrorCode.INVALID_INPUT);
-        }
+    public static ScheduleException of(ErrorCode errorCode, String detail) {
+        return new ScheduleException(errorCode, detail);
     }
 }

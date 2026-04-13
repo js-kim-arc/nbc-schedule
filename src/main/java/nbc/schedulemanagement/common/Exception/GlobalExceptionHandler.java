@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -16,8 +17,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Map<String, String>> handleBusiness(BusinessException e) {
         ErrorCode code = e.getErrorCode();
-        return ResponseEntity.status(code.getStatus())
-                             .body(Map.of("message", code.getMessage()));
+
+        Map<String, String> body = new HashMap<>();
+        body.put("message", code.getMessage());
+        if (e.getDetail() != null) {
+            body.put("detail", e.getDetail());
+        }
+
+        return ResponseEntity.status(code.getStatus()).body(body);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
