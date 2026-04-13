@@ -45,7 +45,6 @@ Spring Boot 기반의 일정 관리 REST API입니다.
   "password": "1234"
 }
 ```
-
 **Response** `201 Created`
 ```json
 {
@@ -159,3 +158,7 @@ GET /api/schedules?author=김철수 → 작성자 필터 조회
 | 서버 오류 | `500 Internal Server Error` | `서버 내부 오류가 발생했습니다.` |
 
 </details>
+
+
+![1.png](../../Users/user/Desktop/1.png)
+Erd 참고용 사진입니다.!!

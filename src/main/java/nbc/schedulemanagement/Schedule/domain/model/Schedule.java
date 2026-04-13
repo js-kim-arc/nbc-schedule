@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nbc.schedulemanagement.Schedule.domain.exception.ScheduleException;
+import nbc.schedulemanagement.common.Exception.ErrorCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -63,6 +65,7 @@ public class Schedule {
 
     public void validatePassword(String password) {
         if (!this.password.equals(password)) {
+            throw ScheduleException.of(ErrorCode.INVALID_PASSWORD);
         }
     }
 }
