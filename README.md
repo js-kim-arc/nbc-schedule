@@ -330,6 +330,6 @@ GET /api/schedules?author=김철수 → 작성자 필터 조회
 
 </details>
 
-![](https://raw.githubusercontent.com/js-kim-arc/nbc-schedule/main/1.png)
+![](https://raw.githubusercontent.com/js-kim-arc/nbc-schedule/main/image.png)
 ---
 Erd 참고용 사진입니다.!!
